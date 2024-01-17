@@ -14,6 +14,7 @@ export const CryptoWidget = (props: CryptoсurrencyProps) => {
     handleChangeValue,
     handleChangeValueCurrency,
     toValueCurrency,
+    description,
   } = useCryptocurrency(props);
 
   if (isLoading) {
@@ -25,30 +26,35 @@ export const CryptoWidget = (props: CryptoсurrencyProps) => {
   }
 
   return (
-    <div className="w-full flex flex-col items-center gap-2 md:flex-row">
-      <div className="flex border rounded-md overflow-hidden grow w-full">
-        <input
-          className="outline-none px-2 border-r w-full text-right [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-          value={fromValue}
-          onChange={(e) => handleChangeValue(e, "from")}
-        />
-        <CryptoSelect
-          value={fromValueCurrency}
-          onChange={(v) => handleChangeValueCurrency(v, "from")}
-        />
+    <div className="w-full">
+      <div className="w-full flex flex-col items-center gap-2 md:flex-row mb-4">
+        <div className="flex border rounded-md overflow-hidden grow w-full">
+          <input
+            className="outline-none px-2 border-r w-full text-right [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+            value={fromValue}
+            onChange={(e) => handleChangeValue(e, "from")}
+          />
+          <CryptoSelect
+            value={fromValueCurrency}
+            onChange={(v) => handleChangeValueCurrency(v, "from")}
+          />
+        </div>
+        <ArrowRightLeft className="w-4 h-4 text-muted-foreground rotate-90 md:rotate-0 shrink-0" />
+        <div className="flex border rounded-md overflow-hidden grow w-full">
+          <input
+            className="outline-none px-2 border-r w-full text-right [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+            value={toValue}
+            onChange={(e) => handleChangeValue(e, "to")}
+          />
+          <CryptoSelect
+            value={toValueCurrency}
+            onChange={(v) => handleChangeValueCurrency(v, "to")}
+          />
+        </div>
       </div>
-      <ArrowRightLeft className="w-4 h-4 text-muted-foreground rotate-90 md:rotate-0 shrink-0" />
-      <div className="flex border rounded-md overflow-hidden grow w-full">
-        <input
-          className="outline-none px-2 border-r w-full text-right [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-          value={toValue}
-          onChange={(e) => handleChangeValue(e, "to")}
-        />
-        <CryptoSelect
-          value={toValueCurrency}
-          onChange={(v) => handleChangeValueCurrency(v, "to")}
-        />
-      </div>
+      <p className="text-sm text-muted-foreground text-center md:text-start">
+        {description}
+      </p>
     </div>
   );
 };

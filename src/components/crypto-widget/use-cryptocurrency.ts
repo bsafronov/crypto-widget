@@ -26,6 +26,12 @@ export const useCryptocurrency = ({
     currency.find((c) => c.abbr === initialCurrencyTo) ?? currency[1]
   );
 
+  const description =
+    fromValue &&
+    `${+fromValue} ${fromValueCurrency.label} = ${+toValue} ${
+      toValueCurrency.label
+    }`;
+
   useEffect(() => {
     const getCryptoCurrency = async () => {
       const currencyKeysString = currency.map((c) => c.abbr).join(",");
@@ -148,5 +154,6 @@ export const useCryptocurrency = ({
     handleChangeValueCurrency,
     fromValueCurrency,
     toValueCurrency,
+    description,
   };
 };
